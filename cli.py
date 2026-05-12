@@ -11,11 +11,9 @@ def _default_compress_out(input_path: Path) -> Path:
 
 
 def _default_decompress_out(input_path: Path) -> Path:
-    
     if input_path.suffix == ".bart":
         return input_path.with_suffix("")
-    
-  
+
     return input_path.with_suffix(input_path.suffix)
 
 

@@ -1,49 +1,39 @@
-# bart_zip -- Custom LZ77 + Huffman file compressor
+# bart_zip
 
-file compressor written in Python.
+Custom LZ77 + Huffman file compressor with a simple Flask frontend.
 
 This project implements:
 
--   LZ77 algorithm
--   Huffman algorithm
--   Custom binary format (.bart)
--   Command-line interface built with Typer library
+- LZ77 algorithm
+- Huffman algorithm
+- Custom binary format `.bart`
+- Basic web upload form for compression and decompression
 
-------------------------------------------------------------------------
+## Run locally
 
-## Usage
+    pip install -r requirements.txt
+    flask --app app run
 
-### Compress a file
+Open:
+
+    http://127.0.0.1:5000
+
+## Command line
+
+Compress a file:
 
     python cli.py compress file.txt
 
-Output:
-
-    file.bart
-
-### Decompress a file
+Decompress a file:
 
     python cli.py decompress file.bart
 
-Output:
+## Render deployment
 
-    file
+This project includes `render.yaml`.
 
-You can specify output manually:
+On Render, create a new Blueprint from the repository or create a Web Service
+manually with:
 
-    python cli.py decompress file.bart -o restored.txt
-
-------------------------------------------------------------------------
-
-## Example Compression Results 
-### EXAMPLES ARE IN examples/ FOLDER
-
-Tested on various datasets:
-
-
-   File Type              Original Size     Compressed Size
-  ---------------------  --------------- -----------------
-  Repeating patterns      5.6 MB          56 KB
-  Mixed patterns          1.7 MB          759 KB
-  Random (a/b/c only)     1.9 MB          912 KB
-
+    Build Command: pip install -r requirements.txt
+    Start Command: gunicorn app:app
